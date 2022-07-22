@@ -1,0 +1,48 @@
+﻿@model IEnumerable<MultipleRowDelete.Models.tblEmployee>
+
+@{
+    ViewBag.Title = "Index";
+}
+<br />
+<br />
+
+@using (Html.BeginForm("Delete", "Employee", FormMethod.Post))
+{
+    <button type="submit" value="Delete" class="btn btn-sm btn-danger rounded-0" onclick="return confirm('Are you sure?')"><i class="fa fa-trash-o"></i> Delete All Selected Row</button>
+    <br />
+    <br />
+    <table class="table table-bordered">
+        <tr>
+            <th>Select</th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <input type="checkbox" name="ids" value="@item.ID" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+            </tr>
+        }
+    </table>
+}
+
